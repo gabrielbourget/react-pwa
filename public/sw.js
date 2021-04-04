@@ -2,6 +2,7 @@ const STATIC_CACHE_NAME = "app-cache-v1";
 
 const staticAssets = [
   "/static/js/main.chunk.js",
+  "/static/js/main.chunk.js.map",
   "/static/js/0.chunk.js",
   "/static/js/bundle.js",
   "/static/js/vendors~main.chunk.js",
@@ -19,13 +20,16 @@ self.addEventListener("install", (evt) => {
 });
 
 self.addEventListener("fetch", (evt) => {
-  evt.respondWith(
-    caches.match(evt.request).then((response) => {
-      if (!response) {
+  if (!navigator.online) {
+    evt.respondWith(
+      caches.match(evt.request).then((response) => {
+        if (!response) {
+  
+        }
+        
+        return response;
+      })
+    );
+  }
 
-      }
-      
-      return response;
-    })
-  );
 })
