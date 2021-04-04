@@ -24,7 +24,8 @@ self.addEventListener("fetch", (evt) => {
     evt.respondWith(
       caches.match(evt.request).then((response) => {
         if (!response) {
-  
+          let requestURL = evt.request.clone();
+          return fetch(requestURL);
         }
         
         return response;

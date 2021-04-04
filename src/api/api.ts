@@ -7,8 +7,9 @@ export const getUsers = async () => {
     const response = await fetch(API_ENDPOINT);
     users = await response.json();
   } catch(err) {
-    throw new Error(`Error fetching users -> ${err}`);
+    console.error(`Error fetching users -> ${err}`);
+    return [ undefined, err ];
   }
 
-  return users;
+  return [ users, undefined ];
 }
