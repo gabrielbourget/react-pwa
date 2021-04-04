@@ -5,7 +5,7 @@ const staticAssets = [
   "/static/js/0.chunk.js",
   "/static/js/bundle.js",
   "/static/js/vendors~main.chunk.js",
-  "/", "/index.html"
+  "/", "/index.html", "/users", "/about"
 ];
 
 const self = this;
