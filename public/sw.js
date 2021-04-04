@@ -20,7 +20,18 @@ self.addEventListener("install", (evt) => {
 });
 
 self.addEventListener("fetch", (evt) => {
+  
   if (!navigator.online) {
+    // -> Hacky way to do this, there are programmatic ways to get a notification not to repeat.
+    //   -> Refer to Google Code Lab on push notifications to see this.
+    //     -> https://developers.google.com/web/ilt/pwa/lab-integrating-web-push#41_generate_the_keys
+    if (evt.request.url === "http://localhost:3000/static/js/main.chunk.js") {
+      evt.waitUntil(
+        self.registration.showNotification("Internet is not working", {
+          body: "Boop"
+        })
+      );
+    }
     evt.respondWith(
       caches.match(evt.request).then((response) => {
         if (!response) {
@@ -32,5 +43,4 @@ self.addEventListener("fetch", (evt) => {
       })
     );
   }
-
 })
