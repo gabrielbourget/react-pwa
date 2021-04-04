@@ -19,6 +19,7 @@ const Users: React.FC = () => {
       if (err) {
         let cachedUsersCollection = localStorage.getItem(USER_DATA_KEY);
         console.log(`[Users]: cached user collection -> ${JSON.parse(cachedUsersCollection!)}`);
+        // - TODO: -> Why is this not setting properly?
         if (cachedUsersCollection) setUserData(JSON.parse(cachedUsersCollection));
         setMode(STATE__OFFLINE);
       }
@@ -58,7 +59,7 @@ const Users: React.FC = () => {
                 </tr>
               ))
             ) : (
-              <h1>no data</h1>
+              <td>no data</td>
             )
           }
         </tbody>
