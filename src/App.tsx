@@ -1,12 +1,22 @@
-// import React from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import { Navbar, Nav } from "react-bootstrap";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import Users from "./Components/Users/Users";
+import firebase from "./firebase";
 
 function App() {
+  useEffect(() => {
+    const msg = firebase.messaging();
+    msg.requestPermission().then(() => {
+      return msg.getToken();
+    }).then((data) => {
+      console.warn("messaging token -> ", data);
+    });
+  }, []);
+
   return (
     <div className="App">
       <Router>
