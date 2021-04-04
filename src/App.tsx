@@ -2,9 +2,9 @@
 import './App.css';
 import { Navbar, Nav } from "react-bootstrap";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Home from "./Home/Home";
-import About from "./About/About";
-import Users from "./Users/Users";
+import Home from "./Components/Home/Home";
+import About from "./Components/About/About";
+import Users from "./Components/Users/Users";
 
 function App() {
   return (
